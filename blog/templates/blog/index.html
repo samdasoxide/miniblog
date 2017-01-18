@@ -1,0 +1,11 @@
+{% extends "base.html" %}
+
+{% block content %}
+    <h1>Home page</h1>
+    <h4>Basic stats</h4>
+    <br>
+    <p><strong>Number of blog authors</strong> {{ num_author }}</p>
+    <p><strong>Number of blogs</strong> {{ num_blog }}</p>
+    <p><strong>Total number of comments</strong> {{ num_comment }}</p>
+    <p><strong>The average number of comments per blog</strong> {{ average_comment|floatformat:"0" }}</p>
+{% endblock %}

@@ -1,0 +1,6 @@
+.sidebar {
+    margin-top: 20px;
+    list-style: none;
+    padding: 0 0 20px 20px;
+    border-right: 1px solid;
+}

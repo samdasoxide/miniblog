@@ -16,6 +16,9 @@ class Blog(models.Model):
     post_date = models.DateField()
     content = models.TextField()
 
+    class Meta:
+        ordering = ["post_date"]
+
     def __str__(self):
         """
         String representing a model instance
@@ -33,9 +36,12 @@ class Author(models.Model):
     """
     Model representing biographical information about the author
     """
-    name = models.CharField(
-        max_length=200,
+    name = models.ForeignKey(
+        User,
+        on_delete=models.SET_NULL,
+        null=True,
         help_text='Enter name of blog author')
+
     bio = models.TextField(help_text="Enter some of author's biography")
 
     def __str__(self):
@@ -51,7 +57,7 @@ class Author(models.Model):
         return reverse('author-detail', args=[str(self.id)])
 
 
-class comment(models.Model):
+class Comment(models.Model):
     """
     Model representing comments posted by user
     """
@@ -64,8 +70,11 @@ class comment(models.Model):
     comment = models.TextField()
     comment_date = models.DateTimeField(auto_now_add=True)
 
+    class Meta:
+        ordering = ["comment_date"]
+
     def __str__(self):
         """
         String representing a comment
         """
-        return "{0}, {1}".format(self.id, self.blog.title)
+        return "Comment for: {0}".format(self.blog.title)
